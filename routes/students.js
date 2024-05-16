@@ -6,10 +6,10 @@ router.get("/", userController.getAll);
 
 router.get("/:id", userController.getSingle);
 
-// router.post("/", userController.createContact);
+router.post("/", userController.createStudent);
 
-// router.put("/:id", userController.updateContact);
+router.put("/:id", userController.updateStudent);
 
-// router.delete("/:id", userController.deleteContact);
+router.delete("/:id", userController.deleteStudent);
 
 module.exports = router;

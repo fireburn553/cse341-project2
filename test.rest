@@ -1,0 +1,24 @@
+### Get single user by ID published link
+GET https://cse341-project2-2gux.onrender.com/students/6644adb25b82fd1943eb6853
+### Get single user by ID localhost
+GET http://localhost:3000/students/6644adb25b82fd1943eb6853
+
+### Get all user thru published link
+GET https://cse341-project2-2gux.onrender.com/students
+### Get all user thru localhost
+GET http://localhost:3000/students
+
+### Create contact localhost
+POST http://localhost:3000/students HTTP/1.1
+content-type: application/json
+
+{
+    "firstName": "Jeremy",
+    "lastName": "Yaba",
+    "schoolId": 1, 
+    "birthday": "01/12/2001",
+    "gradeLevel": 2,
+    "gradeSection": 1,
+    "teacherAdviser": "Henry Lopez"
+}
+
