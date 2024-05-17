@@ -6,6 +6,7 @@ router.get("/", (req, res) => {
 });
 
 router.use("/students", require("./students"));
+router.use("/professors", require("./professors"));
 
 router.use("/", require("./swagger"));
 
