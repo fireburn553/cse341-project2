@@ -4,24 +4,41 @@ const ObjectId = require("mongodb").ObjectId;
 const getAll = async (req, res) => {
   //#swagger.tags=['Students']
   const result = await mongodb.getDatabase().db().collection("students").find();
-  result.toArray().then((students) => {
-    res.setHeader("Content-Type", "application/json");
-    res.status(200).json(students);
-  });
+  result
+    .toArray((err, lists) => {
+      if (err) {
+        res.status(400).json({ message: err });
+      }
+    })
+    .then((students) => {
+      res.setHeader("Content-Type", "application/json");
+      res.status(200).json(students);
+    });
 };
 
 const getSingle = async (req, res) => {
   //#swagger.tags=['Students']
+  if (!ObjectId.isValid(req.params.id)) {
+    res
+      .status(400)
+      .json("Must us a valid student id to update the student details.");
+  }
   const userId = new ObjectId(req.params.id);
   const result = await mongodb
     .getDatabase()
     .db()
     .collection("students")
     .find({ _id: userId });
-  result.toArray().then((students) => {
-    res.setHeader("Content-Type", "application/json");
-    res.status(200).json(students[0]);
-  });
+  result
+    .toArray((err, lists) => {
+      if (err) {
+        res.status(400).json({ message: err });
+      }
+    })
+    .then((students) => {
+      res.setHeader("Content-Type", "application/json");
+      res.status(200).json(students[0]);
+    });
 };
 
 const createStudent = async (req, res) => {
@@ -51,6 +68,11 @@ const createStudent = async (req, res) => {
 
 const updateStudent = async (req, res) => {
   //#swagger.tags=['Students']
+  if (!ObjectId.isValid(req.params.id)) {
+    res
+      .status(400)
+      .json("Must us a valid student id to update the student details.");
+  }
   const userId = new ObjectId(req.params.id);
   const user = {
     firstName: req.body.firstName,
@@ -77,6 +99,11 @@ const updateStudent = async (req, res) => {
 
 const deleteStudent = async (req, res) => {
   //#swagger.tags=['Students']
+  if (!ObjectId.isValid(req.params.id)) {
+    res
+      .status(400)
+      .json("Must us a valid student id to update the student details.");
+  }
   const userId = new ObjectId(req.params.id);
   try {
     const response = await mongodb
