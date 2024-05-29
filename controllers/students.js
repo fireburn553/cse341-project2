@@ -67,6 +67,7 @@ const createStudent = async (req, res) => {
 };
 
 const updateStudent = async (req, res) => {
+  console.log("Lusot sa authentication");
   //#swagger.tags=['Students']
   if (!ObjectId.isValid(req.params.id)) {
     res

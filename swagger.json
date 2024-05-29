@@ -12,7 +12,7 @@
   ],
   "paths": {
     "/": {
-      "get": {
+      "get": {  
         "tags": [
           "Hello World"
         ],
